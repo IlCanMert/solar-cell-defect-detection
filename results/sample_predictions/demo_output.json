@@ -1,0 +1,131 @@
+{
+  "mode": "default_showcase",
+  "showcase_indices": [
+    470,
+    1180,
+    1576
+  ],
+  "selected_features": 208,
+  "selected_hog": 198,
+  "selected_lbp": 10,
+  "total_features": 334,
+  "feature_reduction_pct": 37.72,
+  "predictions": [
+    {
+      "image_shape": [
+        300,
+        300
+      ],
+      "baseline_label": 1,
+      "baseline_name": "DEFECTIVE",
+      "baseline_margin": 2.123611,
+      "ga_label": 1,
+      "ga_name": "DEFECTIVE",
+      "ga_margin": 1.67834,
+      "models_agree": true,
+      "total_features": 334,
+      "selected_features": 208,
+      "selected_hog": 198,
+      "selected_lbp": 10,
+      "feature_reduction_pct": 37.72,
+      "timing_ms": {
+        "feature_extraction_ms": 5.3477,
+        "baseline_clf_ms": 1.6327,
+        "baseline_total_ms": 6.9804,
+        "ga_clf_ms": 0.375,
+        "ga_total_ms": 5.7227
+      },
+      "score_note": "LinearSVC margins are uncalibrated signed distances to the hyperplane (positive -> DEFECTIVE, negative -> HEALTHY), not calibrated probabilities.",
+      "meta": {
+        "sample_tag": "#470 (cell0527.png)",
+        "subset_index": 470,
+        "original_index": 526,
+        "image_path": "images/cell0527.png",
+        "split": "test",
+        "cell_type": "mono",
+        "true_label": 1,
+        "true_label_name": "DEFECTIVE",
+        "resolved_path": "C:\\Users\\nnact\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\elpv_dataset\\data\\images\\cell0527.png"
+      }
+    },
+    {
+      "image_shape": [
+        300,
+        300
+      ],
+      "baseline_label": 0,
+      "baseline_name": "HEALTHY",
+      "baseline_margin": -1.347816,
+      "ga_label": 0,
+      "ga_name": "HEALTHY",
+      "ga_margin": -1.246973,
+      "models_agree": true,
+      "total_features": 334,
+      "selected_features": 208,
+      "selected_hog": 198,
+      "selected_lbp": 10,
+      "feature_reduction_pct": 37.72,
+      "timing_ms": {
+        "feature_extraction_ms": 1.2054,
+        "baseline_clf_ms": 0.6295,
+        "baseline_total_ms": 1.8349,
+        "ga_clf_ms": 0.4263,
+        "ga_total_ms": 1.6317
+      },
+      "score_note": "LinearSVC margins are uncalibrated signed distances to the hyperplane (positive -> DEFECTIVE, negative -> HEALTHY), not calibrated probabilities.",
+      "meta": {
+        "sample_tag": "#1180 (cell1356.png)",
+        "subset_index": 1180,
+        "original_index": 1355,
+        "image_path": "images/cell1356.png",
+        "split": "test",
+        "cell_type": "mono",
+        "true_label": 0,
+        "true_label_name": "HEALTHY",
+        "resolved_path": "C:\\Users\\nnact\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\elpv_dataset\\data\\images\\cell1356.png"
+      }
+    },
+    {
+      "image_shape": [
+        300,
+        300
+      ],
+      "baseline_label": 1,
+      "baseline_name": "DEFECTIVE",
+      "baseline_margin": 0.01346,
+      "ga_label": 0,
+      "ga_name": "HEALTHY",
+      "ga_margin": -0.208509,
+      "models_agree": false,
+      "total_features": 334,
+      "selected_features": 208,
+      "selected_hog": 198,
+      "selected_lbp": 10,
+      "feature_reduction_pct": 37.72,
+      "timing_ms": {
+        "feature_extraction_ms": 1.1951,
+        "baseline_clf_ms": 0.5201,
+        "baseline_total_ms": 1.7152,
+        "ga_clf_ms": 0.3327,
+        "ga_total_ms": 1.5278
+      },
+      "score_note": "LinearSVC margins are uncalibrated signed distances to the hyperplane (positive -> DEFECTIVE, negative -> HEALTHY), not calibrated probabilities.",
+      "meta": {
+        "sample_tag": "#1576 (cell1857.png)",
+        "subset_index": 1576,
+        "original_index": 1856,
+        "image_path": "images/cell1857.png",
+        "split": "test",
+        "cell_type": "poly",
+        "true_label": 0,
+        "true_label_name": "HEALTHY",
+        "resolved_path": "C:\\Users\\nnact\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\elpv_dataset\\data\\images\\cell1857.png"
+      }
+    }
+  ],
+  "saved_files": {
+    "demo_showcase": "C:\\Users\\nnact\\Desktop\\SENG435 image processing notes\\Proje\\\u0130mage_Proc_Project\\results\\sample_predictions\\demo_showcase.png",
+    "demo_single_prediction": "C:\\Users\\nnact\\Desktop\\SENG435 image processing notes\\Proje\\\u0130mage_Proc_Project\\results\\sample_predictions\\demo_single_prediction.png",
+    "demo_output": "C:\\Users\\nnact\\Desktop\\SENG435 image processing notes\\Proje\\\u0130mage_Proc_Project\\results\\sample_predictions\\demo_output.json"
+  }
+}

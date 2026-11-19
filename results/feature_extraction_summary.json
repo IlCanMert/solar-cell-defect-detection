@@ -1,0 +1,38 @@
+{
+  "total_samples": 2223,
+  "hog_dim": 324,
+  "lbp_dim": 10,
+  "total_dim": 334,
+  "matrix_shape": [
+    2223,
+    334
+  ],
+  "matrix_dtype": "float64",
+  "label_shape": [
+    2223
+  ],
+  "has_nan": false,
+  "has_inf": false,
+  "lbp_row_sum_min": 1.0,
+  "lbp_row_sum_max": 1.0,
+  "extraction_time_s": 2.8554,
+  "ms_per_image": 1.2845,
+  "cache_file": "data\\features_hog_lbp.npz",
+  "figure_file": "results\\figures\\feature_visualization.png",
+  "sample_cells_visualized": [
+    {
+      "cell_id": "cell0004",
+      "original_index": "3",
+      "label_name": "HEALTHY",
+      "cell_type": "mono",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell0001",
+      "original_index": "0",
+      "label_name": "DEFECTIVE",
+      "cell_type": "mono",
+      "split": "train"
+    }
+  ]
+}

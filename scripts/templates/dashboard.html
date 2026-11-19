@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Güneş Hücresi İnceleme · SENG435</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap topbar">
+      <a class="brand" href="#incele"><span class="brand-mark" aria-hidden="true"></span> Hücre İnceleme</a>
+      <nav aria-label="Ana menü">
+        <a href="#incele" aria-current="page">Hücreyi incele</a>
+        <a href="#deney">Deney sonuçları</a>
+        <a href="#gorseller">Görseller</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="incele" data-page aria-labelledby="inspection-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="kicker">SENG435 · Görüntü İşleme</p>
+          <h1 id="inspection-title">Güneş hücresinde<br class="hero-break"> kusur var mı?</h1>
+          <p class="lede">Örnek hücreyle başla. İki modelin tahminini, hücrenin veri setindeki sağlıklı veya kusurlu etiketiyle karşılaştır.</p>
+          <div class="action-row">
+            <button type="button" class="button primary" data-example="1576" data-predict-control>Örnek hücreyi incele <span aria-hidden="true">→</span></button>
+            <button type="button" class="button outline" id="uploadButton" data-predict-control aria-describedby="uploadHint">EL görüntüsü yükle</button>
+            <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.bmp,.tif,.tiff" data-predict-control hidden>
+          </div>
+          <p class="hint" id="uploadHint">Elektrolüminesans (EL) çekimi, hücreye akım verildiğinde yaydığı ışığı gösterir. Tek hücre görüntüsü yükleyebilirsin. PNG, JPEG, BMP veya TIFF · En çok 16 MB.</p>
+        </div>
+        <figure class="hero-figure">
+          <img src="{{ url_for('static', filename='cell1857.png') }}" width="300" height="300" alt="Polikristal güneş hücresinin gri tonlu elektrolüminesans görüntüsü">
+          <figcaption><span>Örnek EL görüntüsü</span><span>ELPV · Hücre #1576</span></figcaption>
+        </figure>
+      </div>
+
+      <details class="disclosure examples">
+        <summary>Başka bir örnek seç</summary>
+        <div class="disclosure-body">
+          <p>Bu hücrelerin veri setindeki etiketi biliniyor. Tahminden sonra iki modelin kararını etiketle karşılaştırabilirsin.</p>
+          <div id="presets" class="preset-grid"></div>
+          <div class="sample-controls">
+            <div class="select-field">
+              <label for="sampleSelect">Tüm test hücreleri</label>
+              <select id="sampleSelect" data-predict-control disabled>
+                <option value="">Örnekler yükleniyor…</option>
+              </select>
+            </div>
+            <button class="button outline" id="sampleButton" data-predict-control disabled>Seçili hücreyi incele</button>
+            <button class="button plain" id="randomButton" data-predict-control disabled>Rastgele seç ve incele</button>
+          </div>
+        </div>
+      </details>
+      <p id="predictionStatus" class="status" role="status" aria-live="polite"></p>
+
+      <section id="result" class="result" aria-labelledby="resultTitle" hidden>
+        <div class="section-heading">
+          <div>
+            <h2 id="resultTitle" tabindex="-1">İnceleme sonucu</h2>
+            <p id="resultSource"></p>
+          </div>
+          <a id="downloadCard" class="button outline" download="hucre-inceleme.png">Sonuç kartını indir <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="result-grid">
+          <figure class="result-figure">
+            <img id="rawImage" alt="İncelenen hücrenin gri tonlu görüntüsü">
+            <figcaption id="imageSize"></figcaption>
+          </figure>
+          <div class="result-content">
+            <p class="reference"><strong id="referenceTitle">Veri setindeki etiket</strong><span id="referenceValue"></span></p>
+            <div class="model-grid">
+              <article class="model">
+                <h3>Tüm özelliklerle tahmin</h3>
+                <p id="baselineLabel" class="prediction-label"></p>
+                <p id="baselineMatch" class="match"></p>
+                <p id="baselineFeatures" class="model-count"></p>
+              </article>
+              <article class="model selected-model">
+                <h3>Seçilmiş özelliklerle tahmin</h3>
+                <p id="gaLabel" class="prediction-label"></p>
+                <p id="gaMatch" class="match"></p>
+                <p id="gaFeatures" class="model-count"></p>
+              </article>
+            </div>
+            <p id="comparison" class="comparison"></p>
+          </div>
+        </div>
+
+        <details class="disclosure" id="predictionDetails">
+          <summary>Karar puanı, süre ve görüntü özellikleri</summary>
+          <div class="disclosure-body">
+            <p>İki model aynı sınıflandırma yöntemini (SVM) kullanır. Genetik algoritma (GA), ikinci model için kenar ve doku ölçümlerinin bir bölümünü seçer.</p>
+            <p>Karar puanının eşiği <strong>0</strong>. Pozitif puan kusurlu, negatif veya tam sıfır sağlıklı sınıfına karşılık gelir. Puanı modelin kendi karar ölçeğinde oku. Bir olasılık yüzdesi olarak yorumlamak için ayrıca kalibrasyon gerekir.</p>
+            <dl class="detail-values">
+              <div><dt>Tüm özellikli modelin puanı</dt><dd id="baselineScore"></dd></div>
+              <div><dt>GA modelinin puanı</dt><dd id="gaScore"></dd></div>
+              <div><dt>GA modelinin işlem süresi</dt><dd id="gaTime"></dd></div>
+            </dl>
+            <p class="hint">İşlem süresi, bu görüntü için özellik çıkarımını ve model kararını kapsar. Dosyanın yüklenmesi ve sonuç kartının hazırlanması ayrıca zaman alır.</p>
+            <div class="method-grid">
+              <figure><img id="hogImage" alt="HOG kenar yönleri"><figcaption><strong>HOG · Kenar yönleri</strong><br>Hücredeki çizgi ve kenarların yönünü özetler.</figcaption></figure>
+              <figure><img id="lbpImage" alt="LBP doku örüntüsü haritası"><figcaption><strong>LBP · Yerel doku</strong><br>Her pikselin çevresindeki açık ve koyu örüntüleri özetler.</figcaption></figure>
+              <figure><div id="histogram" class="histogram" role="img"></div><figcaption><strong>LBP · Doku dağılımı</strong><br>Her çubuk, bir örüntüye düşen piksel oranını gösterir.</figcaption></figure>
+            </div>
+          </div>
+        </details>
+      </section>
+    </section>
+
+    <section id="deney" data-page aria-labelledby="experiment-title" hidden>
+      <div class="page-intro">
+        <p class="kicker">Model karşılaştırması</p>
+        <h1 id="experiment-title">Deney sonuçları</h1>
+        <p class="lede">Genetik algoritma (GA), görüntüden çıkarılan özelliklerin bir bölümünü seçer. Her iki yöntem de aynı test hücreleri üzerinde değerlendirilir.</p>
+      </div>
+      <p id="experimentStatus" class="status" role="status">Sonuçlar yükleniyor…</p>
+      <div id="experimentContent" hidden>
+        <div class="finding">
+          <div><span class="finding-label">Üç GA çalıştırmasının ortalaması</span><strong id="reductionValue"></strong></div>
+          <p id="experimentFinding"></p>
+        </div>
+        <h2>Modeller nasıl karşılaştırıldı?</h2>
+        <p id="testContext" class="muted"></p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Ana deney sonuçları">
+          <table>
+            <thead><tr><th scope="col">Yöntem</th><th scope="col">Özellik sayısı</th><th scope="col">Macro F1</th><th scope="col">Kusur yakalama</th><th scope="col">Doğruluk</th></tr></thead>
+            <tbody id="keyMetrics"></tbody>
+          </table>
+        </div>
+        <dl class="glossary">
+          <div><dt>Özellik sayısı</dt><dd>Modelin karar verirken kullandığı görüntü ölçümlerinin sayısı.</dd></div>
+          <div><dt>Macro F1</dt><dd>Her sınıf için tahminlerin ne kadarının doğru olduğunu ve o sınıftaki hücrelerin ne kadarının yakalandığını birleştirir. İki sınıfa eşit ağırlık verir. 1 en iyi puandır.</dd></div>
+          <div><dt>Kusur yakalama</dt><dd>Gerçekten kusurlu hücrelerin yüzde kaçının kusurlu olarak tanındığını gösterir.</dd></div>
+          <div><dt>Doğruluk</dt><dd>Sağlıklı ve kusurlu tüm test hücreleri içinde doğru tahminlerin yüzdesi.</dd></div>
+        </dl>
+        <details class="disclosure">
+          <summary>Tüm deneyler ve süreler</summary>
+          <div class="disclosure-body">
+            <p>HOG kenar yönlerini, LBP yerel dokuyu ölçer. Rastgele seçim, GA ile aynı sayıda özelliği rastgele seçerek karşılaştırma sağlar. Hücre başına işlem süresi, toplu özellik çıkarımı ile sınıflandırma ölçümlerinin toplamıdır.</p>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Tüm deneyler">
+              <table>
+                <thead><tr><th scope="col">Yöntem</th><th scope="col">Özellik sayısı</th><th scope="col">Macro F1</th><th scope="col">Kusur yakalama</th><th scope="col">Doğruluk</th><th scope="col">İşlem süresi</th></tr></thead>
+                <tbody id="allMetrics"></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+        <details class="disclosure">
+          <summary>GA tekrarları ve hücre tiplerine göre hatalar</summary>
+          <div class="disclosure-body">
+            <p>GA aramaya farklı başlangıçlarla tekrarlandı. Her çalıştırma aynı test kümesinde ölçüldü.</p>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="GA tekrarları">
+              <table>
+                <thead><tr><th scope="col">Başlangıç değeri (seed)</th><th scope="col">Özellik sayısı</th><th scope="col">Macro F1</th><th scope="col">Özellik arama süresi</th></tr></thead>
+                <tbody id="seedMetrics"></tbody>
+              </table>
+            </div>
+            <h3>Hücre tiplerine göre yanlış tahminler</h3>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Hücre tiplerine göre yanlış tahminler">
+              <table>
+                <thead><tr><th scope="col">Hücre tipi</th><th scope="col">Test hücresi</th><th scope="col">Tüm özelliklerle SVM</th><th scope="col">GA + SVM</th></tr></thead>
+                <tbody id="subgroupMetrics"></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="gorseller" data-page aria-labelledby="gallery-title" hidden>
+      <div class="page-intro">
+        <p class="kicker">Veri ve değerlendirme</p>
+        <h1 id="gallery-title">Proje görselleri</h1>
+        <p class="lede">Hücre örneklerini, modellerin neyi ölçtüğünü ve hangi örneklerde yanıldığını incele. Büyütmek için bir görsel seç.</p>
+      </div>
+      <p id="galleryStatus" class="status" role="status">Görseller yükleniyor…</p>
+      <div id="gallery" class="gallery"></div>
+    </section>
+  </main>
+
+  <dialog id="figureDialog" aria-labelledby="figureTitle">
+    <div class="section-heading">
+      <h2 id="figureTitle"></h2>
+      <form method="dialog"><button class="button outline">Kapat</button></form>
+    </div>
+    <img id="figureImage" alt="">
+    <p id="figureCaption"></p>
+  </dialog>
+</body>
+</html>

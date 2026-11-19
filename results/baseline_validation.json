@@ -1,0 +1,59 @@
+{
+  "model_name": "E1_Baseline_LinearSVC_All334",
+  "n_features": 334,
+  "train_samples": 1556,
+  "val_samples": 333,
+  "hyperparameters": {
+    "C": 0.001,
+    "class_weight": "balanced",
+    "max_iter": 5000,
+    "random_state": 42
+  },
+  "train_time_s": 0.1055,
+  "val_infer_ms_per_image": 0.00219,
+  "train_cv_3fold": {
+    "cv_macro_f1_mean": 0.7333,
+    "cv_macro_f1_std": 0.0038,
+    "cv_defective_f1_mean": 0.6539,
+    "cv_defective_recall_mean": 0.714,
+    "cv_accuracy_mean": 0.7571
+  },
+  "train_resubstitution": {
+    "macro_f1": 0.8020958175279346,
+    "defective_f1": 0.7414272474513438,
+    "healthy_f1": 0.8627643876045253,
+    "defective_precision": 0.690846286701209,
+    "defective_recall": 0.8,
+    "accuracy": 0.820694087403599,
+    "confusion_matrix": [
+      [
+        877,
+        179
+      ],
+      [
+        100,
+        400
+      ]
+    ]
+  },
+  "validation": {
+    "macro_f1": 0.7635135135135135,
+    "defective_f1": 0.6846846846846847,
+    "healthy_f1": 0.8423423423423423,
+    "defective_precision": 0.6608695652173913,
+    "defective_recall": 0.7102803738317757,
+    "accuracy": 0.7897897897897898,
+    "confusion_matrix": [
+      [
+        187,
+        39
+      ],
+      [
+        31,
+        76
+      ]
+    ]
+  },
+  "model_file": "models\\baseline.joblib",
+  "grid_csv": "results\\baseline_validation_grid.csv"
+}

@@ -1,0 +1,53 @@
+project:
+  name: "solar-cell-defect-ga"
+  seed: 42
+
+dataset:
+  included_labels:
+    healthy: 0.0
+    defective: 1.0
+  split_ratios:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+  splits_file: "data/splits.csv"
+
+preprocessing:
+  original_size: [300, 300]
+  hog_resize: [64, 64]
+  lbp_resize: [64, 64]
+
+features:
+  hog:
+    orientations: 9
+    pixels_per_cell: [16, 16]
+    cells_per_block: [2, 2]
+    block_norm: "L2-Hys"
+    expected_length: 324
+  lbp:
+    P: 8
+    R: 1
+    method: "uniform"
+    n_bins: 10
+    expected_length: 10
+  total_expected_length: 334
+
+baseline_svm:
+  C: 0.001
+  class_weight: "balanced"
+  max_iter: 5000
+  random_state: 42
+  c_grid: [0.001, 0.01, 0.1, 1.0, 10.0]
+  class_weight_grid: [null, "balanced"]
+
+ga:
+  population_size: 12
+  generations: 8
+  crossover_prob: 0.7
+  mutation_prob: 0.002994  # ~ 1 / 334
+  elitism_count: 2
+  tournament_size: 3
+  cv_folds: 3
+  lambda_penalty: 0.05
+  random_state: 42
+  multi_seeds: [42, 123, 999]

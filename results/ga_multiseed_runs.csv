@@ -1,0 +1,4 @@
+seed,selected_features,hog_features,lbp_features,feature_reduction_pct,best_fitness,train_cv_macro_f1,val_macro_f1,test_macro_f1,test_defective_f1,test_defective_precision,test_defective_recall,test_accuracy,search_time_s,fit_time_s,classifier_infer_ms,total_infer_ms,n_unique_evals,n_cache_hits
+42,208,198,10,37.72,0.7123,0.7434,0.7404,0.7325,0.646,0.6186,0.6759,0.7605,7.3563,0.0502,0.00097,1.28547,82,26
+123,215,207,8,35.63,0.7139,0.7461,0.7388,0.7179,0.625,0.6034,0.6481,0.7485,6.5769,0.0354,0.0009,1.2854,66,42
+999,155,149,6,53.59,0.7285,0.7518,0.7382,0.7191,0.6283,0.6017,0.6574,0.7485,4.9482,0.0244,0.00082,1.28532,69,39

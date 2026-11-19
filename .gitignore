@@ -1,0 +1,25 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Raw dataset clones (loaded via elpv-dataset package instead)
+elpv-dataset/
+data/raw/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

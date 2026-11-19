@@ -1,0 +1,140 @@
+{
+  "seeds": [
+    42,
+    123,
+    999
+  ],
+  "n_runs": 3,
+  "std_ddof": 1,
+  "runs": [
+    {
+      "seed": 42,
+      "selected_features": 208,
+      "hog_features": 198,
+      "lbp_features": 10,
+      "feature_reduction_pct": 37.72,
+      "best_fitness": 0.7123,
+      "train_cv_macro_f1": 0.7434,
+      "val_macro_f1": 0.7404,
+      "test_macro_f1": 0.7325,
+      "test_defective_f1": 0.646,
+      "test_defective_precision": 0.6186,
+      "test_defective_recall": 0.6759,
+      "test_accuracy": 0.7605,
+      "search_time_s": 7.3563,
+      "fit_time_s": 0.0502,
+      "classifier_infer_ms": 0.00097,
+      "total_infer_ms": 1.28547,
+      "n_unique_evals": 82,
+      "n_cache_hits": 26
+    },
+    {
+      "seed": 123,
+      "selected_features": 215,
+      "hog_features": 207,
+      "lbp_features": 8,
+      "feature_reduction_pct": 35.63,
+      "best_fitness": 0.7139,
+      "train_cv_macro_f1": 0.7461,
+      "val_macro_f1": 0.7388,
+      "test_macro_f1": 0.7179,
+      "test_defective_f1": 0.625,
+      "test_defective_precision": 0.6034,
+      "test_defective_recall": 0.6481,
+      "test_accuracy": 0.7485,
+      "search_time_s": 6.5769,
+      "fit_time_s": 0.0354,
+      "classifier_infer_ms": 0.0009,
+      "total_infer_ms": 1.2854,
+      "n_unique_evals": 66,
+      "n_cache_hits": 42
+    },
+    {
+      "seed": 999,
+      "selected_features": 155,
+      "hog_features": 149,
+      "lbp_features": 6,
+      "feature_reduction_pct": 53.59,
+      "best_fitness": 0.7285,
+      "train_cv_macro_f1": 0.7518,
+      "val_macro_f1": 0.7382,
+      "test_macro_f1": 0.7191,
+      "test_defective_f1": 0.6283,
+      "test_defective_precision": 0.6017,
+      "test_defective_recall": 0.6574,
+      "test_accuracy": 0.7485,
+      "search_time_s": 4.9482,
+      "fit_time_s": 0.0244,
+      "classifier_infer_ms": 0.00082,
+      "total_infer_ms": 1.28532,
+      "n_unique_evals": 69,
+      "n_cache_hits": 39
+    }
+  ],
+  "mean_std": {
+    "selected_features": {
+      "mean": 192.6667,
+      "std": 32.8075
+    },
+    "hog_features": {
+      "mean": 184.6667,
+      "std": 31.2143
+    },
+    "lbp_features": {
+      "mean": 8.0,
+      "std": 2.0
+    },
+    "feature_reduction_pct": {
+      "mean": 42.3133,
+      "std": 9.8216
+    },
+    "best_fitness": {
+      "mean": 0.7182,
+      "std": 0.0089
+    },
+    "train_cv_macro_f1": {
+      "mean": 0.7471,
+      "std": 0.0043
+    },
+    "val_macro_f1": {
+      "mean": 0.7391,
+      "std": 0.0011
+    },
+    "test_macro_f1": {
+      "mean": 0.7232,
+      "std": 0.0081
+    },
+    "test_defective_f1": {
+      "mean": 0.6331,
+      "std": 0.0113
+    },
+    "test_defective_precision": {
+      "mean": 0.6079,
+      "std": 0.0093
+    },
+    "test_defective_recall": {
+      "mean": 0.6605,
+      "std": 0.0142
+    },
+    "test_accuracy": {
+      "mean": 0.7525,
+      "std": 0.0069
+    },
+    "search_time_s": {
+      "mean": 6.2938,
+      "std": 1.2288
+    },
+    "fit_time_s": {
+      "mean": 0.0367,
+      "std": 0.0129
+    },
+    "classifier_infer_ms": {
+      "mean": 0.0009,
+      "std": 0.0001
+    },
+    "total_infer_ms": {
+      "mean": 1.2854,
+      "std": 0.0001
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "seed": 42,
+  "raw_total_images": 2624,
+  "image_shape": [
+    300,
+    300
+  ],
+  "image_dtype": "uint8",
+  "pixel_min": 0,
+  "pixel_max": 255,
+  "has_module_id": false,
+  "split_strategy": "stratified_joint_label_and_cell_type",
+  "raw_probability_distribution": {
+    "0.0": 1508,
+    "0.3333": 295,
+    "0.6667": 106,
+    "1.0": 715
+  },
+  "raw_cell_type_distribution": {
+    "mono": 1074,
+    "poly": 1550
+  },
+  "binary_subset_total": 2223,
+  "binary_healthy": 1508,
+  "binary_defective": 715,
+  "excluded_intermediate_count": 401,
+  "splits": {
+    "train": {
+      "total": 1556,
+      "percentage": 70.0,
+      "healthy": 1056,
+      "defective": 500,
+      "defective_rate_pct": 32.13,
+      "mono": 631,
+      "poly": 925
+    },
+    "val": {
+      "total": 333,
+      "percentage": 14.98,
+      "healthy": 226,
+      "defective": 107,
+      "defective_rate_pct": 32.13,
+      "mono": 135,
+      "poly": 198
+    },
+    "test": {
+      "total": 334,
+      "percentage": 15.02,
+      "healthy": 226,
+      "defective": 108,
+      "defective_rate_pct": 32.34,
+      "mono": 135,
+      "poly": 199
+    }
+  },
+  "sample_figure": "results\\figures\\dataset_samples.png",
+  "sample_cells": [
+    {
+      "cell_id": "cell0932",
+      "original_index": "931",
+      "label_name": "HEALTHY",
+      "cell_type": "mono",
+      "split": "test"
+    },
+    {
+      "cell_id": "cell1571",
+      "original_index": "1570",
+      "label_name": "HEALTHY",
+      "cell_type": "mono",
+      "split": "test"
+    },
+    {
+      "cell_id": "cell1775",
+      "original_index": "1774",
+      "label_name": "HEALTHY",
+      "cell_type": "poly",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell1780",
+      "original_index": "1779",
+      "label_name": "HEALTHY",
+      "cell_type": "poly",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell0030",
+      "original_index": "29",
+      "label_name": "DEFECTIVE",
+      "cell_type": "mono",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell0979",
+      "original_index": "978",
+      "label_name": "DEFECTIVE",
+      "cell_type": "mono",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell0208",
+      "original_index": "207",
+      "label_name": "DEFECTIVE",
+      "cell_type": "poly",
+      "split": "train"
+    },
+    {
+      "cell_id": "cell0804",
+      "original_index": "803",
+      "label_name": "DEFECTIVE",
+      "cell_type": "poly",
+      "split": "train"
+    }
+  ]
+}
